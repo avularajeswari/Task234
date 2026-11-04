@@ -1,0 +1,39 @@
+Step 1: Create the departments table
+CREATE TABLE departments (
+    id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    employee_count INT CHECK (employee_count >= 0)
+);
+Step 2: Create the employees table
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    department_id INT,
+    FOREIGN KEY (department_id)
+    REFERENCES departments(id)
+);
+Step 3: Insert valid records
+INSERT INTO departments
+VALUES (1, 'IT', 10);
+INSERT INTO employees
+VALUES (1, 'Arun', 1);
+
+Step 4: Test NOT NULL
+
+INSERT INTO departments
+VALUES (2, NULL, 5);
+
+Step 5: Test UNIQUE
+
+INSERT INTO departments
+VALUES (3, 'IT', 20);
+
+Step 6: Test FOREIGN KEY
+
+INSERT INTO employees
+VALUES (2, 'Rahul', 999);
+
+Step 7: Test CHECK
+
+INSERT INTO departments
+VALUES (4, 'HR', -5);
